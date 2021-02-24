@@ -11,10 +11,10 @@
         <property name="connection.password">root</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <!-- SQL Dialect -->
+        <!-- SQL Dialect- defines what is the language that you are going to use to communicate with db-->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-        <!-- Echo all executed SQL to stdout -->
+        <!-- Echo all executed SQL to stdout - below property take care about showing hibernate executed sql queries in console-->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 

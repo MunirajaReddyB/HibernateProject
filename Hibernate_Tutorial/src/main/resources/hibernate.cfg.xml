@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        " http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Database Connection details -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/devdb</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+        <!-- SQL Dialect- defines what is the language that you are going to use to communicate with db-->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Echo all executed SQL to stdout - below property take care about showing hibernate executed sql queries in console-->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <!-- <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> -->
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">create</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Name of the annotated entity classes-->
+        <mapping class="org.muniraja.dto.UserDetails" />
+       <!-- <mapping class="org.krish.dto.Vehicle" />
+        <mapping class="org.krish.dto.Department" />
+        <mapping class="org.krish.dto.Project" />
+        <mapping class="org.krish.dto.Employee" />
+        <mapping class="org.krish.dto.Device" />
+        <mapping class="org.krish.dto.Laptop" />
+        <mapping class="org.krish.dto.Mobile" />-->
+    </session-factory>
+</hibernate-configuration>

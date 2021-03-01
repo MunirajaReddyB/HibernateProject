@@ -1,6 +1,8 @@
 package org.muniraja.dto;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 //@Entity annotation tells to the hibernate this the type of object which needs to be persist.
 //@id define this particular property is the primary key for the table
@@ -17,8 +19,19 @@ public class UserDetails {
     private int userId;
     @Column (name = "USER_NAME")
     private String userName;
-    @Embedded
-    private Address address;
+/*    @Embedded
+    private Address address;*/
+
+    @ElementCollection
+    private Set<Address> listOfAddress = new HashSet();
+    public Set<Address> getListOfAddress() {
+        return listOfAddress;
+    }
+
+    public void setListOfAddress(Set<Address> listOfAddress) {
+        this.listOfAddress = listOfAddress;
+    }
+
 
     public int getUserId() {
         return userId;
@@ -36,12 +49,12 @@ public class UserDetails {
         this.userName = userName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
 }

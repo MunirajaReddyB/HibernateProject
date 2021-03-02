@@ -1,8 +1,11 @@
 package org.muniraja.dto;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 //@Entity annotation tells to the hibernate this the type of object which needs to be persist.
 //@id define this particular property is the primary key for the table
@@ -23,12 +26,15 @@ public class UserDetails {
     private Address address;*/
 
     @ElementCollection
-    private Set<Address> listOfAddress = new HashSet();
-    public Set<Address> getListOfAddress() {
+    @JoinTable(name = "USER_ADDRESS",joinColumns = @JoinColumn(name = "USER_ID"))
+    @GenericGenerator(name="increment-gen",strategy = "increment")
+    @CollectionId(columns = {@Column(name="ADDRESS_ID")}, type = @Type(type="long"), generator ="increment-gen" )
+    private List<Address> listOfAddress = new ArrayList();
+    public List<Address> getListOfAddress() {
         return listOfAddress;
     }
 
-    public void setListOfAddress(Set<Address> listOfAddress) {
+    public void setListOfAddress(List<Address> listOfAddress) {
         this.listOfAddress = listOfAddress;
     }
 

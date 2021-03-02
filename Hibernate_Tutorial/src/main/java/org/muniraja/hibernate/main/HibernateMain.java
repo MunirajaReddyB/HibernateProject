@@ -6,9 +6,7 @@ import org.muniraja.dto.Address;
 import org.muniraja.dto.UserDetails;
 import org.muniraja.hibernate.util.HibernateUtil;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class HibernateMain {
 
@@ -41,7 +39,11 @@ public class HibernateMain {
 
         }catch(Exception e){
             e.printStackTrace();
-            session.close();
+            session.getTransaction().rollback();
+        }finally{
+            if(session != null){
+                session.close();
+            }
         }
 
     }
@@ -58,7 +60,7 @@ public class HibernateMain {
 
             System.out.println("UserId:"+userDetails.getUserId());
             System.out.println("UserName:"+userDetails.getUserName());
-            Set<Address> addressSet = userDetails.getListOfAddress();
+            List<Address> addressSet = userDetails.getListOfAddress();
             for(Iterator<Address> itr = addressSet.iterator();itr.hasNext();){
 
                 Address address =(Address)itr.next();
@@ -76,7 +78,11 @@ public class HibernateMain {
 
         }catch(Exception e){
             e.printStackTrace();
-            session.close();
+            session.getTransaction().rollback();
+        }finally{
+            if(session != null){
+                session.close();
+            }
         }
 
     }
